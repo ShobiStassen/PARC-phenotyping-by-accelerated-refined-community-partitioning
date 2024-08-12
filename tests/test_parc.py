@@ -7,7 +7,7 @@ def test_parc_run_umap_hnsw():
     x_data = iris.data
     y_data = iris.target
 
-    parc_model = PARC(x_data, true_label=y_data)
+    parc_model = PARC(x_data, y_data_true=y_data)
     parc_model.run_PARC()
 
     graph = parc_model.knngraph_full()
