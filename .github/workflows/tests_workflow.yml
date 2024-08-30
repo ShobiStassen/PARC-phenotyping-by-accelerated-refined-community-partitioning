@@ -1,0 +1,27 @@
+name: tests_workflow
+ 
+# execute this workflow automatically when a we push to any branch
+on: [push]
+ 
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install pytest
+      - name: Install PARC
+        run: |
+          pip install .
+      - name: Run Python tests -x
+        run: |
+          pytest tests/
+        continue-on-error: false
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
