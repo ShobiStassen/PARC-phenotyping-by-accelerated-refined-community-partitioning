@@ -8,6 +8,7 @@ Examples
 
 
 	import parc
+	from parc.umap_hnsw import run_umap_hnsw
 	import matplotlib.pyplot as plt
 	from sklearn import datasets
 
@@ -31,9 +32,9 @@ Examples
 	plt.show()
 
 	# Run umap on the HNSW knngraph already built in PARC (more time and memory efficient for large datasets)
-	# If you choose to visualize before running PARC clustering. then you need to include this line: Parc1.knn_struct = p1.make_knn_struct() 
+	# If you choose to visualize before running PARC clustering. then you need to include this line: Parc1.hnsw_index = p1.create_hnsw_index() 
 	graph = Parc1.knngraph_full()
-	X_umap = Parc1.run_umap_hnsw(X, graph)
+	X_umap = run_umap_hnsw(X, graph)
 	plt.scatter(X_umap[:, 0], X_umap[:, 1], c=Parc1.labels)
 	plt.show()
 
